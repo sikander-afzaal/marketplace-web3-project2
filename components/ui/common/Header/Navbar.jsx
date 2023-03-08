@@ -42,7 +42,11 @@ export default function Navbar() {
                 <Button disabled>Loading...</Button>
               ) : isWeb3Loaded ? (
                 account ? (
-                  <Button variant="red" className={"cursor-default"}>
+                  <Button
+                    hoverable={false}
+                    variant="red"
+                    className={"cursor-default"}
+                  >
                     {`${account.slice(0, 4)}...${account.slice(-4)}`}
                   </Button>
                 ) : (
