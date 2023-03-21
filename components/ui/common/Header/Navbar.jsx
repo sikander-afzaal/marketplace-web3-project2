@@ -1,5 +1,5 @@
 import { useWeb3 } from "@/components/provider";
-import { useAccount } from "@/components/web3/hooks/useAccount";
+import { useAccount } from "@/components/hooks/web3/useAccount";
 import Link from "next/link";
 import Button from "../Button/Button";
 
@@ -25,7 +25,7 @@ export default function Navbar() {
                 Features
               </Link>
               <Link
-                href="/"
+                href="/marketplace"
                 className="font-medium mr-8 text-gray-500 hover:text-gray-900"
               >
                 Marketplace
@@ -41,13 +41,15 @@ export default function Navbar() {
               {isLoading ? (
                 <Button disabled>Loading...</Button>
               ) : isWeb3Loaded ? (
-                account ? (
+                account.data ? (
                   <Button
                     hoverable={false}
                     variant="red"
                     className={"cursor-default"}
                   >
-                    {`${account.slice(0, 4)}...${account.slice(-4)}`}
+                    {`${account.data.slice(0, 4)}...${account.data.slice(-4)} ${
+                      account.isAdmin ? "Admin" : ""
+                    }`}
                   </Button>
                 ) : (
                   <Button onClick={connect}>Connect Wallet</Button>
